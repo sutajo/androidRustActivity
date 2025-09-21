@@ -5,7 +5,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CARGO_PROFILE "--release")
 else ()
-    set(CARGO_PROFILE "--profile ${CARGO_PROFILE}")
+    set(CARGO_PROFILE "--profile ${CMAKE_BUILD_TYPE}")
 endif()
 
 if(ANDROID_ABI STREQUAL "armeabi-v7a")
@@ -51,6 +51,8 @@ if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
     set(AR_TOOL ${AR_TOOL}.cmd)
     set(LINKER_TOOL ${LINKER_TOOL}.cmd)
 endif()
+
+file(TO_CMAKE_PATH "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}" CMAKE_RUNTIME_OUTPUT_DIRECTORY)
 
 function(add_external_library_crate TARGET MANIFEST_DIR JNI_DIR)
     ExternalProject_Add(${TARGET}
