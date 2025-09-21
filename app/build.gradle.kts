@@ -13,12 +13,19 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+        ndk {
+            debugSymbolLevel = "full"
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            ndk {
+                debugSymbolLevel = "symbol_table"
+            }
+
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -38,7 +45,7 @@ android {
         externalNativeBuild {
             cmake {
                 targets("TEST_LIB")
-                abiFilters("arm64-v8a")
+                abiFilters("arm64-v8a", "x86_64")
             }
         }
     }
