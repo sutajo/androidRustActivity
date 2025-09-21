@@ -53,7 +53,7 @@ if(CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
 endif()
 
 function(add_external_library_crate TARGET MANIFEST_DIR JNI_DIR)
-    ExternalProject_Add(TEST_LIB
+    ExternalProject_Add(${TARGET}
             URL               ${MANIFEST_DIR}
             BUILD_ALWAYS      ON
             CONFIGURE_COMMAND ""
