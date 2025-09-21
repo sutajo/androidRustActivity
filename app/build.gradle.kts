@@ -38,6 +38,7 @@ android {
         externalNativeBuild {
             cmake {
                 targets("TEST_LIB")
+                abiFilters("arm64-v8a")
             }
         }
     }
